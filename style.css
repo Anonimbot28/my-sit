@@ -1,0 +1,808 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+:root{
+  --bg:#05070c;
+  --card:#0c1018;
+  --glass:rgba(255,255,255,.06);
+  --stroke:rgba(255,255,255,.14);
+
+  --text:#eef3ff;
+  --muted:rgba(238,243,255,.72);
+
+  --blue:#00d4ff;
+  --violet:#7c4dff;
+
+  --radius:22px;
+  --radius-sm:14px;
+
+  --shadow:0 30px 60px rgba(0,0,0,.55);
+  --glow:0 0 28px rgba(0,212,255,.35);
+
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:Inter,system-ui,Arial;
+  color:var(--text);
+  background:
+    radial-gradient(800px 500px at 10% 0%, rgba(124,77,255,.15), transparent 60%),
+    radial-gradient(800px 500px at 90% 10%, rgba(0,212,255,.15), transparent 60%),
+    linear-gradient(180deg,#05070c,#070a12);
+  overflow-x:hidden;
+}
+
+a{text-decoration:none;color:inherit}
+img{width:100%;height:100%;object-fit:cover;display:block}
+.container{width:min(1160px,92vw);margin:auto}
+
+/* HEADER */
+.header{
+  position:sticky;top:0;z-index:100;
+  backdrop-filter:blur(14px);
+  background:rgba(5,7,12,.75);
+  border-bottom:1px solid var(--stroke);
+}
+.navbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 0;
+}
+.brand{
+  display:flex;align-items:center;gap:12px;
+  font-weight:800;
+}
+.brand-badge{
+  width:40px;height:40px;border-radius:14px;
+  background:linear-gradient(135deg,var(--violet),var(--blue));
+}
+.nav-links{display:flex;gap:10px}
+.nav-links a{
+  padding:8px 14px;border-radius:999px;
+  font-size:13px;font-weight:700;
+  transition:.25s ease;
+}
+.nav-links a:hover,
+.nav-links a.active{
+  background:rgba(255,255,255,.08);
+}
+
+/* HERO */
+.hero{padding:44px 0}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:26px;
+}
+
+/* CARD */
+.card{
+  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));
+  border:1px solid var(--stroke);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+.card-inner{padding:28px}
+
+/* HERO TEXT */
+.hero-title{
+  font-size:44px;
+  font-weight:900;
+  line-height:1.1;
+  margin:14px 0;
+}
+.grad{
+  background:linear-gradient(90deg,var(--blue),var(--violet));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.lead{
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.75;
+  max-width:520px;
+}
+
+/* BUTTONS */
+.btn{
+  display:inline-block;
+  padding:10px 18px;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  border:1px solid var(--stroke);
+  font-size:13px;
+  font-weight:700;
+  transition:.25s ease;
+}
+.btn:hover{
+  background:rgba(255,255,255,.12);
+  box-shadow:var(--glow);
+}
+
+/* METRICS */
+.hero-metrics{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:20px;
+}
+.metric{
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--stroke);
+  border-radius:var(--radius-sm);
+  padding:14px;
+}
+.metric b{font-size:18px}
+
+/* HERO IMAGE */
+.hero-media{
+  border-radius:var(--radius);
+  overflow:hidden;
+  border:1px solid var(--stroke);
+  background:#0b0f16;
+}
+.hero-media img{height:100%}
+
+/* SECTIONS */
+.section{padding:34px 0}
+
+/* GRID */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+
+/* TILE */
+.tile{
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--stroke);
+  border-radius:var(--radius-sm);
+  padding:18px;
+}
+.tile h3{margin-bottom:6px}
+
+/* TABLE */
+.table{width:100%;border-collapse:collapse}
+.table th,.table td{
+  padding:14px;
+  font-size:13px;
+  border-bottom:1px solid var(--stroke);
+}
+.table tr:hover{background:rgba(255,255,255,.04)}
+
+/* FOOTER */
+.footer{
+  margin-top:40px;
+  border-top:1px solid var(--stroke);
+  padding:22px 0;
+}
+
+/* REVEAL */
+.card,.tile,.section,.hero-media{
+  opacity:0;
+  transition:opacity .6s ease;
+}
+.is-visible{opacity:1}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero-grid,.grid-3,.grid-2{grid-template-columns:1fr}
+  .hero-title{font-size:34px}
+}
+/* ==== FIX: hero-media FULL IMAGE ==== */
+
+.hero-media{
+  position: relative;
+  min-height: 340px;
+  padding: 0;
+  overflow: hidden;
+  background: none;
+}
+
+/* img займає ВЕСЬ блок */
+.hero-media img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+/* прибираємо будь-який зайвий внутрішній простір */
+.hero-media::before,
+.hero-media::after{
+  content: none !important;
+}
+/* ===============================
+   LITE WOW EFFECTS (CLEAN)
+   =============================== */
+
+/* М'який hover для card і tile */
+.card,
+.tile{
+  position: relative;
+  transition:
+    transform .35s cubic-bezier(.2,.8,.2,1),
+    box-shadow .35s ease,
+    border-color .35s ease;
+}
+
+.card:hover,
+.tile:hover{
+  transform: translateY(-6px);
+  border-color: rgba(0,212,255,.45);
+  box-shadow:
+    0 18px 45px rgba(0,0,0,.55),
+    0 0 32px rgba(0,212,255,.25);
+}
+
+/* Тонка підсвітка рамки при наведенні */
+.card::after,
+.tile::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  opacity:0;
+  transition:.35s ease;
+  box-shadow: inset 0 0 0 1px rgba(0,212,255,.35);
+}
+
+.card:hover::after,
+.tile:hover::after{
+  opacity:1;
+}
+
+/* Hero image — дуже легкий zoom */
+.hero-media img{
+  transition: transform 1.2s cubic-bezier(.2,.8,.2,1);
+}
+.hero-media:hover img{
+  transform: scale(1.04);
+}
+
+/* Кнопки — мікро-реакція */
+.btn{
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    background .25s ease;
+}
+.btn:hover{
+  transform: translateY(-2px);
+}
+
+/* Плавна поява (готово під JS) */
+.reveal{
+  opacity:0;
+  transform: translateY(22px);
+  transition:
+    opacity .6s ease,
+    transform .6s cubic-bezier(.2,.8,.2,1);
+}
+
+.reveal.is-visible{
+  opacity:1;
+  transform:none;
+}
+
+/* Таблиця — акуратний hover */
+.table tr{
+  transition:.25s ease;
+}
+.table tr:hover{
+  background: rgba(255,255,255,.05);
+}
+/* ===============================
+   SMOOTH APPEAR (NO MOVE)
+   =============================== */
+
+.card,
+.tile,
+.section,
+.hero-media {
+  opacity: 0;
+  filter: blur(6px);
+  transition:
+    opacity .8s ease,
+    filter .8s ease;
+}
+
+.is-visible {
+  opacity: 1;
+  filter: blur(0);
+}
+
+/* ===============================
+   PAGE FADE
+   =============================== */
+
+body {
+  transition: opacity .4s ease;
+}
+
+body.page-hidden {
+  opacity: 0;
+}
+/* ===============================
+   POWERPOINT ORANGE THEME
+   =============================== */
+
+/* 1. Основні кольори */
+body.pp-page{
+  background:
+    radial-gradient(900px 600px at 80% 20%, rgba(255,106,0,.18), transparent 60%),
+    radial-gradient(900px 600px at 10% 10%, rgba(255,148,77,.12), transparent 60%),
+    linear-gradient(180deg,#060606,#0b0b0c);
+}
+
+/* 2. Заголовок PowerPoint */
+.pp-page .hero-title .grad{
+  background:linear-gradient(
+    90deg,
+    #ff6a00,
+    #ff944d
+  );
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+/* 3. Картка героя */
+.pp-page .card{
+  background:linear-gradient(
+    180deg,
+    rgba(255,255,255,.05),
+    rgba(255,255,255,.02)
+  );
+  border:1px solid rgba(255,106,0,.35);
+  box-shadow:0 30px 70px rgba(0,0,0,.7);
+  transition:.4s ease;
+}
+
+.pp-page .card:hover{
+  transform:translateY(-6px);
+  box-shadow:
+    0 30px 70px rgba(0,0,0,.7),
+    0 0 40px rgba(255,106,0,.45);
+}
+
+/* 4. Кнопки */
+.pp-page .btn{
+  background:rgba(255,106,0,.14);
+  border:1px solid rgba(255,106,0,.55);
+  color:#fff;
+}
+
+.pp-page .btn:hover{
+  background:rgba(255,106,0,.25);
+  box-shadow:0 0 30px rgba(255,106,0,.6);
+}
+
+/* 5. Метрики (20+ років, PPTX, PDF) */
+.pp-page .metric{
+  background:rgba(255,106,0,.08);
+  border:1px solid rgba(255,106,0,.4);
+}
+
+.pp-page .metric b{
+  color:#ff944d;
+}
+
+/* 6. Hero-зображення */
+.pp-page .hero-media{
+  border:1px solid rgba(255,106,0,.4);
+  box-shadow:0 0 60px rgba(255,106,0,.25);
+}
+
+/* 7. Tiles (анімації, діаграми, експорт) */
+.pp-page .tile{
+  border:1px solid rgba(255,106,0,.3);
+  transition:.35s ease;
+}
+
+.pp-page .tile:hover{
+  transform:translateY(-6px);
+  box-shadow:
+    0 0 30px rgba(255,106,0,.4),
+    0 30px 60px rgba(0,0,0,.6);
+}
+
+/* 8. Таблиця */
+.pp-page .table tr:hover{
+  background:rgba(255,106,0,.08);
+}
+
+/* 9. Активний пункт меню */
+.pp-page .nav-links a.active{
+  background:rgba(255,106,0,.25);
+  box-shadow:0 0 20px rgba(255,106,0,.5);
+}
+/* ================= GOOGLE SLIDES — YELLOW THEME ================= */
+
+.gs-page{
+
+  --accent-main:#ffd500;
+  --accent-soft:rgba(255,213,0,.18);
+  --accent-glow:rgba(255,213,0,.45);
+
+}
+
+/* Заголовки */
+.gs-page .hero-title .grad{
+  background:linear-gradient(90deg,#ffd500,#ffb800);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+/* Картки */
+.gs-page .card,
+.gs-page .tile{
+  border:1px solid rgba(255,213,0,.35);
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.6),
+    0 0 30px rgba(255,213,0,.15);
+}
+
+/* Hover */
+.gs-page .card:hover,
+.gs-page .tile:hover{
+  transform:translateY(-6px);
+  box-shadow:
+    0 25px 60px rgba(0,0,0,.7),
+    0 0 60px rgba(255,213,0,.45);
+}
+
+/* Кнопки */
+.gs-page .btn.primary{
+  background:linear-gradient(135deg,#ffd500,#ffb800);
+  color:#111;
+  font-weight:800;
+}
+.gs-page .btn.primary:hover{
+  box-shadow:0 0 40px rgba(255,213,0,.6);
+}
+
+/* Метрики */
+.gs-page .metric{
+  border:1px solid rgba(255,213,0,.35);
+}
+.gs-page .metric b{
+  color:#ffd500;
+}
+
+/* Таблиця */
+.gs-page .table th{
+  color:#ffd500;
+}
+.gs-page .table tr:hover{
+  background:rgba(255,213,0,.06);
+}
+
+/* Glow рамка hero */
+.gs-page .hero .card{
+  position:relative;
+}
+.gs-page .hero .card::after{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius:inherit;
+  background:linear-gradient(135deg,#ffd500,#ffb800);
+  opacity:.12;
+  filter:blur(30px);
+  z-index:-1;
+}
+/* ================= CANVA — DESIGN THEME ================= */
+
+.canva-page{
+
+  --accent-main:#7b5cff;
+  --accent-secondary:#00e6c3;
+  --accent-glow:rgba(123,92,255,.45);
+
+}
+
+/* Градієнт заголовків */
+.canva-page .hero-title .grad{
+  background:linear-gradient(90deg,#7b5cff,#00e6c3);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+/* Картки */
+.canva-page .card,
+.canva-page .tile{
+  border:1px solid rgba(123,92,255,.35);
+  box-shadow:
+    0 22px 55px rgba(0,0,0,.6),
+    0 0 35px rgba(123,92,255,.15);
+}
+
+/* Hover ефект */
+.canva-page .card:hover,
+.canva-page .tile:hover{
+  transform:translateY(-8px) scale(1.02);
+  box-shadow:
+    0 28px 70px rgba(0,0,0,.7),
+    0 0 70px rgba(0,230,195,.45);
+}
+
+/* Кнопки */
+.canva-page .btn.primary{
+  background:linear-gradient(135deg,#7b5cff,#00e6c3);
+  color:#0b0f16;
+  font-weight:800;
+}
+.canva-page .btn.primary:hover{
+  box-shadow:0 0 45px rgba(0,230,195,.6);
+}
+
+/* Метрики */
+.canva-page .metric{
+  border:1px solid rgba(123,92,255,.35);
+}
+.canva-page .metric b{
+  color:#00e6c3;
+}
+
+/* Таблиця */
+.canva-page .table th{
+  color:#00e6c3;
+}
+.canva-page .table tr:hover{
+  background:rgba(123,92,255,.06);
+}
+
+/* Glow рамка hero */
+.canva-page .hero .card{
+  position:relative;
+}
+.canva-page .hero .card::after{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius:inherit;
+  background:linear-gradient(135deg,#7b5cff,#00e6c3);
+  opacity:.14;
+  filter:blur(32px);
+  z-index:-1;
+}
+/* ================= PREZI — CALM / PROFESSIONAL THEME ================= */
+
+.prezi-page{
+
+  --accent-main:#8fb8c9;        /* холодний синьо-сірий */
+  --accent-secondary:#6fd1c4;   /* мʼятний */
+  --accent-glow:rgba(143,184,201,.35);
+
+}
+
+/* Заголовки */
+.prezi-page .hero-title .grad{
+  background:linear-gradient(90deg,#8fb8c9,#6fd1c4);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+/* Картки */
+.prezi-page .card,
+.prezi-page .tile{
+  border:1px solid rgba(143,184,201,.25);
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.55),
+    0 0 22px rgba(143,184,201,.12);
+  transition:
+    transform .45s cubic-bezier(.2,.8,.2,1),
+    box-shadow .45s ease;
+}
+
+/* Мʼякий hover (без агресії) */
+.prezi-page .card:hover,
+.prezi-page .tile:hover{
+  transform:translateY(-6px) scale(1.015);
+  box-shadow:
+    0 26px 65px rgba(0,0,0,.65),
+    0 0 40px rgba(111,209,196,.25);
+}
+
+/* Кнопки */
+.prezi-page .btn.primary{
+  background:linear-gradient(135deg,#8fb8c9,#6fd1c4);
+  color:#061215;
+  font-weight:800;
+}
+.prezi-page .btn.primary:hover{
+  box-shadow:0 0 35px rgba(111,209,196,.35);
+}
+
+/* Метрики */
+.prezi-page .metric{
+  border:1px solid rgba(143,184,201,.25);
+}
+.prezi-page .metric b{
+  color:#6fd1c4;
+}
+
+/* Таблиця */
+.prezi-page .table th{
+  color:#8fb8c9;
+}
+.prezi-page .table tr:hover{
+  background:rgba(143,184,201,.05);
+}
+
+/* Спокійна glow-рамка hero */
+.prezi-page .hero .card{
+  position:relative;
+}
+.prezi-page .hero .card::after{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius:inherit;
+  background:linear-gradient(135deg,#8fb8c9,#6fd1c4);
+  opacity:.12;
+  filter:blur(28px);
+  z-index:-1;
+}
+
+/* Анімація появи — плавна, без zoom */
+.prezi-page .is-visible{
+  animation:preziFade .7s ease-out both;
+}
+@keyframes preziFade{
+  from{
+    opacity:0;
+    transform:translateY(18px);
+    filter:blur(4px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+    filter:none;
+  }
+}
+/* ================= COMPARISON PAGE ================= */
+
+.compare-page .hero-title .grad{
+  background:linear-gradient(90deg,#00d4ff,#7c4dff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.compare-page .compare-table th{
+  text-align:center;
+  font-weight:800;
+}
+
+.compare-page .compare-table td{
+  text-align:center;
+}
+
+.compare-page .compare-table tr:hover{
+  background:rgba(255,255,255,.05);
+}
+
+.compare-page .tile{
+  transition:.35s ease;
+}
+
+.compare-page .tile:hover{
+  transform:translateY(-6px);
+  box-shadow:0 0 35px rgba(0,212,255,.25);
+}
+/* ================= NAV COLOR SYSTEM ================= */
+
+/* Базовий стиль кнопок */
+.nav-links a{
+  position: relative;
+  transition: .3s ease;
+  border-radius: 999px;
+}
+
+/* ===== PowerPoint (оранжевий) ===== */
+.pp-page .nav-links a[href*="power"],
+.pp-page .nav-links a.active{
+  background: linear-gradient(135deg,#ff7a18,#ff3d00);
+  box-shadow: 0 0 25px rgba(255,122,24,.45);
+  color:#fff;
+}
+
+/* ===== Google Slides (жовтий) ===== */
+.gs-page .nav-links a[href*="google"],
+.gs-page .nav-links a.active{
+  background: linear-gradient(135deg,#fbbc04,#ffe066);
+  box-shadow: 0 0 25px rgba(251,188,4,.45);
+  color:#111;
+}
+
+/* ===== Canva (фіолетово-блакитний) ===== */
+.cv-page .nav-links a[href*="canva"],
+.cv-page .nav-links a.active{
+  background: linear-gradient(135deg,#00c4cc,#7c4dff);
+  box-shadow: 0 0 25px rgba(124,77,255,.45);
+  color:#fff;
+}
+
+/* ===== Prezi (стримані холодні тони) ===== */
+.pr-page .nav-links a[href*="prezi"],
+.pr-page .nav-links a.active{
+  background: linear-gradient(135deg,#2f80ed,#56ccf2);
+  box-shadow: 0 0 25px rgba(47,128,237,.35);
+  color:#fff;
+}
+
+/* ===== Порівняння (нейтральний / біло-синій) ===== */
+.cmp-page .nav-links a[href*="compare"],
+.cmp-page .nav-links a.active{
+  background: linear-gradient(135deg,#e6ecff,#b6c8ff);
+  box-shadow: 0 0 20px rgba(182,200,255,.45);
+  color:#0b1020;
+}
+
+/* Hover ефект для ВСІХ */
+.nav-links a:hover{
+  transform: translateY(-2px) scale(1.05);
+}
+/* ===============================
+   ABOUT ME PAGE
+   =============================== */
+
+.info-list{
+  display:grid;
+  gap:16px;
+  margin-top:20px;
+}
+
+.info-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 18px;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--stroke);
+  border-radius:14px;
+}
+
+.info-label{
+  font-size:13px;
+  color:var(--muted);
+}
+
+.info-value a{
+  color:var(--blue);
+  font-weight:600;
+}
+
+.info-value a:hover{
+  text-decoration:underline;
+}
+.about-page .nav-links a[href*="about"]{
+  background:linear-gradient(135deg,#00d4ff,#7c4dff);
+  box-shadow:0 0 24px rgba(0,212,255,.35);
+  color:#fff;
+}
+/* === FIX NAV ALIGNMENT === */
+.nav-links{
+  display:flex;
+  align-items:center;        /* ВИРІВНЮЄ ПО ВЕРТИКАЛІ */
+  gap:10px;
+}
+
+.nav-links a{
+  display:flex;
+  align-items:center;        /* текст по центру кнопки */
+  justify-content:center;
+  height:36px;               /* ОДНАКОВА ВИСОТА */
+  padding:0 16px;
+  line-height:1;             /* прибирає “стрибки” */
+  white-space:nowrap;        /* ❗ ЗАБОРОНЯЄ ПЕРЕНОС */
+  border-radius:999px;
+}

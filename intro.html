@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>PresentationLab — Вітаємо</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:radial-gradient(800px 500px at 20% 10%, rgba(124,77,255,.25), transparent 60%),
+             radial-gradient(800px 500px at 80% 20%, rgba(0,212,255,.25), transparent 60%),
+             linear-gradient(180deg,#05070c,#070a12);
+  color:#eef3ff;
+  font-family:Inter,system-ui,Arial;
+  overflow:hidden;
+}
+
+.intro{
+  text-align:center;
+  max-width:720px;
+  padding:40px;
+  transition:.8s ease;
+}
+
+.logo{
+  width:64px;height:64px;
+  margin:0 auto 24px;
+  border-radius:20px;
+  background:linear-gradient(135deg,#7c4dff,#00d4ff);
+  box-shadow:0 0 40px rgba(0,212,255,.45);
+}
+
+h1{
+  font-size:42px;
+  font-weight:900;
+  background:linear-gradient(90deg,#00d4ff,#7c4dff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.type{
+  margin-top:20px;
+  font-size:18px;
+  line-height:1.7;
+  min-height:4em;
+}
+
+.cursor{
+  display:inline-block;
+  width:2px;
+  height:1em;
+  background:#00d4ff;
+  margin-left:4px;
+  animation:blink 1s infinite;
+}
+
+@keyframes blink{50%{opacity:0}}
+
+button{
+  margin-top:32px;
+  padding:12px 26px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  font-weight:700;
+  cursor:pointer;
+  opacity:0;
+  pointer-events:none;
+  transition:.4s;
+}
+
+button:hover{box-shadow:0 0 30px rgba(0,212,255,.4)}
+
+.fade-out{
+  opacity:0;
+  transform:scale(.96);
+}
+</style>
+</head>
+
+<body>
+<div class="intro" id="intro">
+  <div class="logo"></div>
+  <h1>PresentationLab</h1>
+
+  <div class="type">
+    <span id="text"></span><span class="cursor"></span>
+  </div>
+
+  <button id="nextBtn" onclick="goNext()">Далі</button>
+</div>
+
+<script>
+const message =
+"Вітаємо у PresentationLab.\n"+
+"Каталозі сучасних програм для створення презентацій.\n"+
+"Давай почнемо з основ.";
+
+const textEl=document.getElementById("text");
+const btn=document.getElementById("nextBtn");
+const intro=document.getElementById("intro");
+let i=0;
+
+function typeText(){
+  if(i<message.length){
+    textEl.innerHTML+=message[i]==="\n"?"<br>":message[i];
+    i++;
+    setTimeout(typeText,45);
+  }else{
+    btn.style.opacity=1;
+    btn.style.pointerEvents="auto";
+    setTimeout(goNext,7000);
+  }
+}
+
+function goNext(){
+  intro.classList.add("fade-out");
+  setTimeout(()=>location.href="about-presentation.html",800);
+}
+
+typeText();
+</script>
+</body>
+</html>

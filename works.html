@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Мої роботи — PresentationLab</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#05070c;
+  --stroke:rgba(255,255,255,.14);
+  --text:#eef3ff;
+  --muted:rgba(238,243,255,.7);
+  --blue:#00d4ff;
+  --violet:#7c4dff;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:Inter,system-ui,Arial;
+  background:
+    radial-gradient(900px 600px at 15% 10%, rgba(124,77,255,.18), transparent 60%),
+    radial-gradient(900px 600px at 85% 20%, rgba(0,212,255,.18), transparent 60%),
+    linear-gradient(180deg,#05070c,#070a12);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:10;
+  padding:18px;
+  text-align:center;
+  font-weight:900;
+  background:rgba(5,7,12,.7);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--stroke);
+}
+
+.page{
+  max-width:900px;
+  margin:auto;
+  padding:40px 20px 160px;
+}
+
+/* WORK */
+.work{
+  margin-bottom:120px;
+  border-radius:22px;
+  overflow:hidden;
+  border:1px solid var(--stroke);
+  background:#0b0f16;
+  box-shadow:0 40px 80px rgba(0,0,0,.6);
+  transform:translateY(60px);
+  opacity:0;
+  transition:1s ease;
+}
+
+.work.show{
+  transform:none;
+  opacity:1;
+}
+
+.work-title{
+  padding:18px 22px;
+  font-weight:800;
+  background:linear-gradient(
+    90deg,
+    rgba(124,77,255,.25),
+    rgba(0,212,255,.25)
+  );
+  border-bottom:1px solid var(--stroke);
+}
+
+/* IMAGE */
+.work img{
+  width:100%;
+  display:block;
+}
+
+/* OPEN PDF */
+.open{
+  display:block;
+  text-align:center;
+  padding:14px;
+  font-weight:700;
+  background:rgba(255,255,255,.06);
+  text-decoration:none;
+  color:#fff;
+  border-top:1px solid var(--stroke);
+}
+
+.open:hover{
+  background:rgba(255,255,255,.1);
+}
+
+/* FOOTER */
+.footer{
+  position:fixed;
+  bottom:24px;
+  left:0;
+  right:0;
+  display:flex;
+  justify-content:center;
+}
+
+.footer a{
+  padding:14px 36px;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  border:1px solid var(--stroke);
+  color:#fff;
+  font-weight:800;
+  text-decoration:none;
+  backdrop-filter:blur(12px);
+  box-shadow:0 0 40px rgba(0,212,255,.35);
+  transition:.3s ease;
+}
+
+.footer a:hover{
+  transform:translateY(-4px);
+  box-shadow:0 0 70px rgba(0,212,255,.65);
+}
+</style>
+</head>
+
+<body>
+
+<header>Мої роботи • PresentationLab</header>
+
+<div class="page">
+
+  <div class="work">
+    <div class="work-title">Інфографіка — PowerPoint</div>
+    <img src="images/info.jpg">
+    <a class="open" href="PDF/Інфографіка.pdf" target="_blank">Відкрити PDF</a>
+  </div>
+
+  <div class="work">
+    <div class="work-title">Бюлетень</div>
+    <img src="images/bulletin.jpg">
+    <a class="open" href="PDF/Бюлетень.pdf" target="_blank">Відкрити PDF</a>
+  </div>
+
+  <div class="work">
+    <div class="work-title">Business Agency Brochure</div>
+    <img src="images/agency.jpg">
+    <a class="open" href="PDF/Navy Modern Business Agency Brochure.pdf" target="_blank">Відкрити PDF</a>
+  </div>
+
+  <div class="work">
+    <div class="work-title">English Tips Infographic</div>
+    <img src="images/english.jpg">
+    <a class="open" href="PDF/Blue 3D Tips Learn English Infographic (1).pdf" target="_blank">Відкрити PDF</a>
+
+    <div class="work">
+    <div class="work-title">Презентація — PowerPoint</div>
+    <img src="Images/ПЗ для створення презентацій».pptx.pdf">
+    <a class="open" href="PDF/ПЗ для створення презентацій».pptx.pdf" target="_blank">Відкрити PDF</a>
+  </div>
+
+  </div>
+
+</div>
+
+<div class="footer">
+  <a href="index.html">Перейти до PresentationLab</a>
+</div>
+
+<script>
+const works = document.querySelectorAll(".work");
+let index = 0;
+
+function showAndScroll(){
+  if(index >= works.length) return;
+
+  const el = works[index];
+  el.classList.add("show");
+
+  setTimeout(()=>{
+    el.scrollIntoView({behavior:"smooth", block:"center"});
+    index++;
+    setTimeout(showAndScroll, 4000); // ⏱ ПАУЗА 4 СЕК
+  }, 600);
+}
+
+setTimeout(showAndScroll, 800);
+</script>
+
+</body>
+</html>
